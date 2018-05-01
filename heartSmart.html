@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" integrity="sha256-iYUgmrapfDGvBrePJPrMWQZDcObdAcStKBpjP3Az+3s=" crossorigin="anonymous" />
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="Smartcss/reset.css" />
+    <link rel="stylesheet" href="Smartcss/style.css" />
+    <link rel="stylesheet" href="Smartcss/leaflet.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.0/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-mDdzqEimigFhaXpqHTnkj2JumLRbFB9qEVJK77zv7lBrdvhyPgl0WaWE7jloVkek" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">HEART SMART CORNER STORE</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+              full list of heart smart corner stores
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" id="ori">
+              my location
+            </button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Back to Home Page</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <button id="inventory" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+        Low Inventory
+      </button> -->
+
+    </nav>
+
+    <div class="box">
+      <h5>What is heart smart corner stores?</h5><br>
+      <div id="intro">
+        <p>Some corner stores offer monthly heart screenings for blood pressure and height and weight checks,
+          hearty taste tests, nutrition education, and coupons to use on heart hearty foods.
+          You can lick on the stores to find out more information.</p>
+        <p>If you want to know how to get to a heart smart corner store, you can click <span style="font-weight: bold; color: black;">
+          MY LOCATION</span>
+          on the navigation bar, and then click on a corner store on the map. A driving route will be displayed on the map.</p>
+      </div>
+      <p id="source">Source:
+        <a href="http://foodfitphilly.org/" style="color: #3b8ee0">
+          FOOD FIT PHILLY
+        </a>
+      </p>
+
+      <div id="results" style="display: none;">
+        <p>Store Name: <span class="name"></span></p>
+        <p>Address: <span class="address"></span></p>
+        <p>Day: <span class="day"></span></p>
+        <p>Time: <span class="time"></span></p>
+        <p>Partner: <span class="partner"></span></p>
+        <div id="travelinfo" style="display: none;">
+          <p>Distance: <span class="distance"></span> meters</p>
+          <p>Time to get there: <span class="duration"></span> minutes</p>
+        </div>
+        <button type="button" class="btn btn-secondary" id="back">Back</button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myLargeModalLabel">heart Smart corner stores</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Store Name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Day</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-secondary">
+                  <td>Eagle Food Market</td>
+                  <td>2208 N Broad Ave. 19132</td>
+                  <td>10-12</td>
+                  <td>1st Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Lehigh Avenue Supermarket</td>
+                  <td>2837 Lehigh Ave 19132</td>
+                  <td>1-3</td>
+                  <td>1st Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Maria’s Grocery</td>
+                  <td>2863 N 5th St. 19133</td>
+                  <td>10-12</td>
+                  <td>2nd Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Corner II Food Market</td>
+                  <td>828 W. Huntingdon St. 19133</td>
+                  <td>1-3</td>
+                  <td>2nd Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>3MNS</td>
+                  <td>623 Fairmount Ave. 19123</td>
+                  <td>10-12</td>
+                  <td>3rd Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Point Breeze Supermarket</td>
+                  <td>1426 Point Breeze Ave 19146</td>
+                  <td>1-3</td>
+                  <td>3rd Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Lora Mini Market</td>
+                  <td>1920 Susquehanna Ave 19121</td>
+                  <td>1-3</td>
+                  <td>4th Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Christian Food Market</td>
+                  <td>2242 Christian St 19146</td>
+                  <td>10-12</td>
+                  <td>4th Thursday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Olivares</td>
+                  <td>1718 Wharton St 19146</td>
+                  <td>1-3</td>
+                  <td>4th Thursday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Jennifer Grocery</td>
+                  <td>4823 Chester Ave 19143</td>
+                  <td>10-12</td>
+                  <td>2nd Wednesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Aladdin Food Market</td>
+                  <td>6247 Elmwood Ave 19142</td>
+                  <td>10-12</td>
+                  <td>2nd Tuesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>Cedar Food Market</td>
+                  <td>600 S. 52nd 19143</td>
+                  <td>12:30-2:30</td>
+                  <td>2nd Wednesday</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>**Ray Food Market</td>
+                  <td>5401 Girard Ave 19131</td>
+                  <td>12:30-2:30</td>
+                  <td>Aug 30, Sept 6, 20, 27</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>**Angela Mini Market</td>
+                  <td>5700 Chester Ave 19143</td>
+                  <td>10-12</td>
+                  <td>Aug 30, Sept 6, 20, Oct 4</td>
+                </tr>
+                <tr class="table-secondary">
+                  <td>**La Delicia Grocery</td>
+                  <td>4936 N. 5th St 19120</td>
+                  <td>1-3</td>
+                  <td>Aug 2, 9, 16</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="modal-footer">
+            <p style="font-size: 0.8em">** These are non-screening stores. They provide nutrition education,
+              taste tests and heart hearty resources, but no heart screenings.
+              For more information, check out the
+                <a href="http://foodfitphilly.org/" style="color: #3b8ee0">
+                  FOOD FIT PHILLY
+                </a>
+                website.
+            </p>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="map" class="map"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js" integrity="sha256-CNm+7c26DTTCGRQkM9vp7aP85kHFMqs9MhPEuytF+fQ=" crossorigin="anonymous"></script>
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="Smartjs/main.js"></script>
+    <script src="Smartjs/decode.js"></script>
+  </body>
+</html>

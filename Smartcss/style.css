@@ -1,0 +1,38 @@
+body {
+    padding: 0;
+    overflow: hidden;
+    font-family: Avenir, Calibri, Helvetica;
+}
+
+nav {
+  position: absolute;
+  top: 0px;
+  height: 70px;
+}
+
+.map {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    height: 100%;
+    top: 70px;
+    z-index: 0;
+}
+
+.box{
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  top: 100px;
+  right: 20px;
+  padding: 1em;
+  width: 420px;
+  height: 450px;
+  z-index: 100;
+}
+
+#source {
+  position: absolute;
+  font-style: italic;
+  font-size: 1em;
+  bottom: 0.5em;
+}
