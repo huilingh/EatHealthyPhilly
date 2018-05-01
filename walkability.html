@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" integrity="sha256-iYUgmrapfDGvBrePJPrMWQZDcObdAcStKBpjP3Az+3s=" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
+    <link rel="stylesheet" href="Walkcss/reset.css" />
+    <link rel="stylesheet" href="Walkcss/style.css" />
+    <link rel="stylesheet" href="Walkcss/leaflet.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.0/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-mDdzqEimigFhaXpqHTnkj2JumLRbFB9qEVJK77zv7lBrdvhyPgl0WaWE7jloVkek" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">healthy food options</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" id="foodmap">Accessibility of healthy food in Philadelphia</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" id="providers">Food providers in Philadelphia</button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Back to Home Page</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="infobox">
+
+      <div id="foodmapInfo">
+        <h5>Accessibility of healthy food in Philadelphia</h5><br>
+        <p>This map shows the walkability to healthy food in Philadelphia on the blockgroup level.
+          Data is derived from OpenDataPhilly, 2012-2014 report analyses.</p><br>
+        <div id="legend" style="clear: both;">
+          <p class="box1"></p> <p class="legend-text1">High Access</p>
+          <p class="box2"></p> <p class="legend-text2">Moderate Access</p>
+          <p class="box3"></p> <p class="legend-text3">Low Access</p>
+          <p class="box4"></p> <p class="legend-text4">No Access</p>
+        </div>
+      </div>
+
+      <div id="providerIntro" style="display: none;">
+        <h5>Food providers in Philadelphia</h5><br>
+        <p>Food providers in Philadelphia include grocery stores, corner stores & resteraunts* and
+        sidewalk cafe. All data come from the business licenses data on OpenDataPhilly. The food
+        providers are displayed on the map according to their food-related business licenses, and
+        their legal names are shown when clicked.
+        </p>
+        <p style="font-size: 12px">*Note: It may take a longer time to proceed when you select the corner stores & resteraunts since
+          this is a large dataset.
+        </p>
+      </div>
+
+      <div class="input" id="providerCheck" style="display: none;">
+      <fieldset class="form-group">
+            <legend>Providers</legend>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" checked="" id="option1">
+                Grocery Stores
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" id="option2">
+                Corner Stores & Restaurants
+              </label>
+            </div>
+            <!-- <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" id="option3">
+                Corner Stores & Restaurants (50+ seats)
+              </label>
+            </div> -->
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" id="option4">
+                Sidewalk Cafe
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- <div class="form-group">
+            <label class="col-form-label" for="inputDefault">Default input</label>
+            <input type="text" class="form-control" placeholder="Default input" id="input">
+          </div> -->
+
+          <button type="submit" class="btn btn-primary btn-sm" id="submit">Submit</button>
+          <button type="button" class="btn btn-primary btn-sm" id="clear">Clear</button>
+        </fieldset>
+      </div>
+    </div>
+
+    <div id="map" class="map"></div>
+
+
+    <!-- Javascript Imports -->
+    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js" integrity="sha256-CNm+7c26DTTCGRQkM9vp7aP85kHFMqs9MhPEuytF+fQ=" crossorigin="anonymous"></script> -->
+    <script src="Walkjs/main.js"></script>
+  </body>
+</html>
